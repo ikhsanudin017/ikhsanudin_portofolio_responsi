@@ -53,31 +53,24 @@ const skills = [
 const projects = [
   { 
     id: 1, 
-    title: 'Sistem Manajemen Tugas', 
-    description: 'Aplikasi web untuk mengelola tugas harian dengan fitur drag-and-drop, prioritas, dan notifikasi.', 
-    image: 'https://qontak.com/wp-content/uploads/2022/10/Manajemen-Tugas-Zoho-Projects.jpg', 
-    tech: ['Vue.js', 'Express.js'], 
-    repoUrl: '#', 
+    title: 'PhoneKu', 
+    description: 'Platform toko online untuk menjual produk HP dengan fitur pencarian, keranjang belanja, dan checkout.', 
+    image: 'phoneku.jpg', 
+    tech: ['laravel'], 
+    repoUrl: 'https://github.com/nandanazadaa/phoneku', 
     liveUrl: '#' 
   },
   { 
     id: 2, 
-    title: 'Website E-Commerce', 
-    description: 'Platform toko online untuk menjual produk dengan fitur pencarian, keranjang belanja, dan checkout.', 
-    image: 'https://images.unsplash.com/photo-1522204523234-8729aa6e3d5f?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=600', 
-    tech: ['Vue.js', 'Firebase'], 
-    repoUrl: '#', 
+    title: 'Sistem Koperasi', 
+    description: 'Platform untuk mengelola Koperasi', 
+    image: 'sistem_koperasi.jpg', 
+    tech: ['C#'], 
+    repoUrl: 'https://github.com/ikhsanudin017/KoperasiApp', 
     liveUrl: '#' 
   },
-  { 
-    id: 3, 
-    title: 'Aplikasi Analisis Data', 
-    description: 'Dashboard interaktif untuk memvisualisasikan data penjualan perusahaan secara real-time.', 
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&q=85&fm=jpg&crop=entropy&cs=srgb&w=600', 
-    tech: ['React', 'D3.js'], 
-    repoUrl: '#', 
-    liveUrl: '#' 
-  },
+ 
+
 ];
 
 // Ekspor semua data agar bisa di-import oleh index.js
