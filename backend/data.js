@@ -69,7 +69,14 @@ const projects = [
     repoUrl: 'https://github.com/ikhsanudin017/KoperasiApp', 
     liveUrl: '#' 
   },
- 
+  {id: 3, 
+  title: 'UI UX Sport Venue ', 
+  description: 'UI UX Aplikasi Pengelola Sewa Lapangan', 
+  image: 'https://i.imgur.com/TWPK4LX.jpeg', 
+  tech: ['C#'], 
+  repoUrl: 'https://github.com/ikhsanudin017/KoperasiApp', 
+  liveUrl: '#' 
+},
 
 ];
 
