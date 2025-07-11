@@ -20,27 +20,27 @@
             Halo, Saya
             <span class="hero-name">Ikhsanudin</span>
           </h1>
-          
+
           <p class="hero-subtitle animate-fade-in-up" style="animation-delay: 200ms;">
             Mahasiswa & Web Developer
           </p>
-          
+
           <p class="hero-description animate-fade-in-up" style="animation-delay: 300ms;">
             Saya mengubah ide dan desain menjadi aplikasi web yang fungsional, modern, dan ramah pengguna dengan teknologi masa depan.
           </p>
-          
+
           <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start mt-8 animate-fade-in-up" style="animation-delay: 400ms;">
             <div class="holographic-border-hero">
               <a href="#contact" class="cta-button-primary">
                 <span class="relative z-10">Hubungi Saya</span>
               </a>
             </div>
-            <a href="/Ikhsanudin-CV.pdf" download class="cta-button-secondary">
-              <span class="relative z-10">Download CV</span>
-            </a>
+            <a href="https://drive.google.com/uc?export=download&id=1Vu441KQsPlOIBhn-tgeNZN-5H74JL4FV" download="Ikhsanudin-CV.pdf" class="cta-button-secondary">
+  <span class="relative z-10">Download CV</span>
+</a>
           </div>
         </div>
-        
+
         <div class="relative flex justify-center order-1 md:order-2 animate-fade-in-up" style="animation-delay: 500ms;">
           <div class="profile-image-container">
             <div class="orbital-rings">
@@ -48,11 +48,11 @@
               <div class="ring ring-2"></div>
               <div class="ring ring-3"></div>
             </div>
-            
+
             <div class="sonar-ping-emitter"></div>
 
-            <img 
-              src="/ican.jpg" alt="Foto Profil Ikhsanudin" 
+            <img
+              src="/ican.jpg" alt="Foto Profil Ikhsanudin"
               class="profile-avatar"
             />
           </div>
@@ -276,14 +276,14 @@
 
 /* Entry Animations */
 @keyframes fade-in-up {
-  from { 
-    opacity: 0; 
+  from {
+    opacity: 0;
     transform: translateY(40px);
     filter: blur(5px);
   }
-  to { 
-    opacity: 1; 
-    transform: translateY(0); 
+  to {
+    opacity: 1;
+    transform: translateY(0);
     filter: blur(0);
   }
 }
