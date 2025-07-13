@@ -1,7 +1,6 @@
 import { sql } from '@vercel/postgres';
 
 export default async function handler(req, res) {
-  // Set CORS headers
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -13,12 +12,12 @@ export default async function handler(req, res) {
 
   if (req.method === 'GET') {
     try {
-      const { rows } = await sql`SELECT * FROM skills ORDER BY name;`;
+      const { rows } = await sql`SELECT * FROM education ORDER BY id ASC;`;
       res.status(200).json(rows);
     } catch (error) {
       console.error('Database error:', error);
       res.status(500).json({
-        error: 'Gagal mengambil data skills',
+        error: 'Gagal mengambil data pendidikan',
         details: error.message
       });
     }
