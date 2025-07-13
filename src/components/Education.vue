@@ -156,8 +156,10 @@ onMounted(async () => {
 
 /* ANIMATION STYLES */
 .card-timeline {
-  opacity: 0;
-  transform: translateY(20px);
+  /* opacity: 0; */
+  /* transform: translateY(20px); */
+  opacity: 1; /* ← Force show */
+  transform: translateY(0); /* ← Force show */
   transition: opacity 0.5s ease-out, transform 0.5s ease-out, box-shadow 0.3s ease-out, border-color 0.3s ease-out;
 }
 .card-timeline:hover {

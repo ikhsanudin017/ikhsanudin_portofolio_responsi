@@ -157,8 +157,10 @@ onMounted(async () => {
 
 /* Project Card Styling (Tidak ada perubahan signifikan, hanya animasi masuk) */
 .project-card {
-  opacity: 0;
-  transform: translateY(50px) rotateX(10deg);
+  /* opacity: 0; */
+  /* transform: translateY(50px) rotateX(10deg); */
+  opacity: 1; /* ← Force show */
+  transform: translateY(0) rotateX(0deg); /* ← Force show */
   transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   perspective: 1000px;
 }

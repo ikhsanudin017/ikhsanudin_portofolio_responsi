@@ -65,6 +65,16 @@ onMounted(async () => {
   inset: 0;
   pointer-events: none;
 }
+.skill-card {
+  @apply relative bg-slate-800/60 backdrop-blur-sm border border-slate-700 p-6 flex flex-col items-center justify-center gap-4 text-center overflow-hidden;
+  clip-path: polygon(0 15px, 15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%);
+  transition: all 0.3s ease-in-out;
+  /* Remove these lines that hide cards: */
+  /* opacity: 0; */
+  /* transform: translateY(30px); */
+  opacity: 1; /* ← Force show */
+  transform: translateY(0); /* ← Force show */
+}
 .particle {
   position: absolute;
   top: var(--y);
@@ -109,14 +119,7 @@ onMounted(async () => {
   to { background-position-x: -800px; }
 }
 
-/* SKILL CARD STYLES */
-.skill-card {
-  @apply relative bg-slate-800/60 backdrop-blur-sm border border-slate-700 p-6 flex flex-col items-center justify-center gap-4 text-center overflow-hidden;
-  clip-path: polygon(0 15px, 15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%);
-  transition: all 0.3s ease-in-out;
-  opacity: 0;
-  transform: translateY(30px);
-}
+
 .skill-card:hover {
   transform: translateY(-5px) scale(1.05);
   background: #1e293b;
@@ -143,5 +146,15 @@ onMounted(async () => {
 }
 .skill-card:hover .skill-name {
   color: #f8fafc;
+}
+.skill-card {
+  @apply relative bg-slate-800/60 backdrop-blur-sm border border-slate-700 p-6 flex flex-col items-center justify-center gap-4 text-center overflow-hidden;
+  clip-path: polygon(0 15px, 15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%);
+  transition: all 0.3s ease-in-out;
+  /* Remove these lines that hide cards: */
+  /* opacity: 0; */
+  /* transform: translateY(30px); */
+  opacity: 1; /* ← Force show */
+  transform: translateY(0); /* ← Force show */
 }
 </style>
