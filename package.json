@@ -1,12 +1,7 @@
 {
-  "name": "portofolio",
-  "version": "1.0.0",
-  "scripts": {
-    "build": "cd frontend && npm run build",
-    "dev": "concurrently \"cd frontend && npm run dev\" \"cd backend && npm run dev\"",
-    "start": "cd backend && npm start"
-  },
-  "devDependencies": {
-    "concurrently": "^7.6.0"
-  }
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ]
 }
