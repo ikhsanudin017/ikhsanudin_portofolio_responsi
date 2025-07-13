@@ -75,19 +75,23 @@
 </template>
 
 <script setup>
+
 import { ref, onMounted } from 'vue';
-import axios from 'axios';
+import apiClient from '../api/axios'; // <-- Impor apiClient yang baru
+import SectionTitle from './SectionTitle.vue';
 
 const projects = ref([]);
-const API_URL = import.meta.env.PROD ? '/api/projects' :
-'http://localhost:3000/api/projects';
+
 onMounted(async () => {
-try {
-projects.value = (await axios.get(API_URL)).data;
-} catch (error) {
-console.error('Gagal mengambil data proyek:', error);
-}
+  try {
+    // Gunakan apiClient untuk mengambil data. Tidak perlu path lengkap lagi.
+    const response = await apiClient.get('/projects'); 
+    projects.value = response.data;
+  } catch (error) {
+    console.error('Gagal mengambil data proyek:', error);
+  }
 });
+
 </script>
 
 <style scoped>

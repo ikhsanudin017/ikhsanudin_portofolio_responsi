@@ -13,12 +13,15 @@
       <div class="energy-currents"></div>
     </div>
 
-    <div class="container mx-auto px-6 py-24 md:py-32 min-h-screen flex items-center relative z-10">
-      <div class="grid md:grid-cols-2 gap-12 md:gap-16 items-center w-full">
+    <div class="container mx-auto px-4 sm:px-6 py-24 md:py-32 min-h-screen flex items-center relative z-10">
+      <div class="grid md:grid-cols-2 gap-8 lg:gap-16 items-center w-full">
         <div class="text-center md:text-left order-2 md:order-1">
           <h1 class="hero-title animate-fade-in-up" style="animation-delay: 100ms;">
-            Halo, Saya
-            <span class="hero-name">Ikhsanudin</span>
+            <div class="hero-greeting">Halo, Saya</div>
+            <div class="hero-name">
+              <span class="typewriter-text">{{ displayedName }}</span>
+              <span class="typewriter-cursor">|</span>
+            </div>
           </h1>
 
           <p class="hero-subtitle animate-fade-in-up" style="animation-delay: 200ms;">
@@ -29,15 +32,15 @@
             Saya mengubah ide dan desain menjadi aplikasi web yang fungsional, modern, dan ramah pengguna dengan teknologi masa depan.
           </p>
 
-          <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start mt-8 animate-fade-in-up" style="animation-delay: 400ms;">
+          <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start mt-6 sm:mt-8 animate-fade-in-up" style="animation-delay: 400ms;">
             <div class="holographic-border-hero">
               <a href="#contact" class="cta-button-primary">
                 <span class="relative z-10">Hubungi Saya</span>
               </a>
             </div>
             <a href="https://drive.google.com/uc?export=download&id=1Vu441KQsPlOIBhn-tgeNZN-5H74JL4FV" download="Ikhsanudin-CV.pdf" class="cta-button-secondary">
-  <span class="relative z-10">Download CV</span>
-</a>
+              <span class="relative z-10">Download CV</span>
+            </a>
           </div>
         </div>
 
@@ -63,8 +66,27 @@
 </template>
 
 <script setup>
-// Script setup can be kept minimal for this design
-// as most effects are CSS-driven for performance.
+import { ref, onMounted } from 'vue'
+
+const displayedName = ref('')
+const fullName = 'Ikhsanudin'
+
+onMounted(() => {
+  setTimeout(() => {
+    typeWriter()
+  }, 1000) // Mulai setelah 1 detik
+})
+
+const typeWriter = () => {
+  let i = 0
+  const timer = setInterval(() => {
+    displayedName.value += fullName.charAt(i)
+    i++
+    if (i > fullName.length - 1) {
+      clearInterval(timer)
+    }
+  }, 150) // Kecepatan mengetik 150ms per karakter
+}
 </script>
 
 <style scoped>
@@ -140,19 +162,45 @@
 
 /* Typography */
 .hero-title {
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-size: clamp(2rem, 5vw, 4.5rem);
   font-weight: 700;
   color: #f8fafc; /* slate-50 */
   margin-bottom: 0.5rem;
   letter-spacing: 0.02em;
 }
+
+.hero-greeting {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
 .hero-name {
   background: linear-gradient(45deg, #22d3ee, #0ea5e9, #10b981);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: text-glow-cycle 4s ease-in-out infinite;
+  position: relative;
+  display: block;
 }
+
+/* Typewriter Effect */
+.typewriter-text {
+  display: inline-block;
+}
+
+.typewriter-cursor {
+  display: inline-block;
+  color: #0ea5e9;
+  animation: blink 1s infinite;
+  font-weight: 400;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
 @keyframes text-glow-cycle {
   0%, 100% {
     text-shadow: 0 0 20px rgba(34, 211, 238, 0.7);
@@ -163,7 +211,7 @@
 }
 
 .hero-subtitle {
-  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-size: clamp(1.125rem, 3vw, 1.75rem);
   font-weight: 500;
   color: #94a3b8; /* slate-400 */
   margin-bottom: 1.5rem;
@@ -171,15 +219,16 @@
 }
 
 .hero-description {
-  font-size: clamp(1rem, 2vw, 1.125rem);
+  font-size: clamp(0.9rem, 2vw, 1.125rem);
   color: #cbd5e1; /* slate-300 */
   max-width: 600px;
   line-height: 1.7;
+  margin: 0 auto 1.5rem;
 }
 
-/* CTA Buttons using established holographic style */
+/* CTA Buttons - Responsive Design */
 .holographic-border-hero {
-  @apply relative p-0.5 rounded-lg inline-block;
+  @apply relative p-0.5 rounded-lg inline-block w-full sm:w-auto;
   background: linear-gradient(45deg, #0ea5e9, #06b6d4, #10b981, #0ea5e9);
   background-size: 300% 300%;
   animation: holographic 4s ease-in-out infinite;
@@ -190,10 +239,16 @@
 }
 
 .cta-button-primary {
-  @apply inline-block font-bold py-3 px-8 rounded-md transition-all duration-300 uppercase tracking-wider text-base;
+  @apply inline-block font-bold py-3 px-6 sm:px-8 rounded-md transition-all duration-300 uppercase tracking-wider text-center w-full;
   background-color: #0A192F;
   color: #f8fafc;
+  font-size: clamp(0.75rem, 2vw, 1rem);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 .cta-button-primary:hover {
   background-color: #1e293b;
   box-shadow: 0 0 20px rgba(14, 165, 233, 0.5);
@@ -201,12 +256,18 @@
 }
 
 .cta-button-secondary {
-  @apply inline-block font-bold py-3 px-8 rounded-lg transition-all duration-300 uppercase tracking-wider text-base;
+  @apply inline-block font-bold py-3 px-6 sm:px-8 rounded-lg transition-all duration-300 uppercase tracking-wider text-center w-full sm:w-auto;
   background: transparent;
   color: #0ea5e9;
   border: 2px solid #0ea5e9;
   box-shadow: inset 0 0 10px rgba(14, 165, 233, 0.2);
+  font-size: clamp(0.75rem, 2vw, 1rem);
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 .cta-button-secondary:hover {
   background-color: rgba(14, 165, 233, 0.1);
   color: #f8fafc;
@@ -216,8 +277,11 @@
 
 /* Profile Image Section */
 .profile-image-container {
-  @apply relative w-64 h-64 md:w-80 lg:w-96 md:h-80 lg:h-96 flex items-center justify-center;
+  @apply relative flex items-center justify-center;
+  width: clamp(200px, 40vw, 400px);
+  height: clamp(200px, 40vw, 400px);
 }
+
 .profile-avatar {
   @apply w-[90%] h-[90%] rounded-full object-cover relative z-10;
   border: 4px solid #0ea5e9;
@@ -273,7 +337,6 @@
   }
 }
 
-
 /* Entry Animations */
 @keyframes fade-in-up {
   from {
@@ -293,9 +356,48 @@
 }
 
 /* Responsive Adjustments */
+@media (max-width: 640px) {
+  .hero-description {
+    text-align: center;
+  }
+  
+  .profile-image-container {
+    margin-bottom: 1rem;
+  }
+  
+  .cta-button-primary,
+  .cta-button-secondary {
+    font-size: 0.875rem;
+    padding: 0.875rem 1.5rem;
+  }
+}
+
 @media (max-width: 768px) {
   .hero-description {
     margin: 0 auto 1.5rem;
+  }
+  
+  .hero-title {
+    margin-bottom: 1rem;
+  }
+  
+  .hero-subtitle {
+    margin-bottom: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-description {
+    text-align: left;
+    margin: 0 0 1.5rem 0;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) {
+  .cta-button-primary:hover,
+  .cta-button-secondary:hover {
+    transform: none;
   }
 }
 </style>
