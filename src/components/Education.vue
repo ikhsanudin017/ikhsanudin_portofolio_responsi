@@ -53,19 +53,14 @@ const educationHistory = ref([]); // ← Fix: ganti dari projects ke educationHi
 onMounted(async () => {
   try {
     const response = await fetch('/api/education');
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
     const data = await response.json();
-
-    console.log('Education Raw Response:', JSON.stringify(data, null, 2));
-    console.log('Education Array Length:', data.length);
-    console.log('Education Variable Name:', 'educationHistory');
-
     educationHistory.value = data;
-
-    // Test setelah set
-    console.log('educationHistory.value after set:', educationHistory.value);
-
+    // Remove all debug console.log
   } catch (error) {
-    console.error('Error:', error);
+    console.error('Gagal mengambil data education:', error);
   }
 });
 </script>

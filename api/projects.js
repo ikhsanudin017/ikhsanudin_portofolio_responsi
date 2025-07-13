@@ -17,11 +17,25 @@ export default async function handler(req, res) {
   if (req.method === 'GET') {
     try {
       if (process.env.VERCEL && sql) {
-        // Production - database
-        const { rows } = await sql`SELECT * FROM projects ORDER BY id ASC;`;
-        res.status(200).json(rows);
+        // Get unique projects only, limit to 3
+        const { rows } = await sql`
+          SELECT DISTINCT ON (title) id, title, image, description, tech, link as live_url, link as repo_url
+          FROM projects
+          WHERE title IS NOT NULL
+          ORDER BY title, id
+          LIMIT 3;
+        `;
+
+        // Fix field names untuk match template
+        const fixedProjects = rows.map(project => ({
+          ...project,
+          repoUrl: project.repo_url || '#',
+          liveUrl: project.live_url || '#'
+        }));
+
+        res.status(200).json(fixedProjects);
       } else {
-        // Development - data static
+        // Development - static data
         const projects = [
           {
             id: 1,
@@ -29,8 +43,8 @@ export default async function handler(req, res) {
             description: 'Platform toko online untuk menjual produk HP dengan fitur pencarian, keranjang belanja, dan checkout.',
             image: 'phoneku.jpg',
             tech: ['laravel'],
-            repo_url: 'https://github.com/nandanazadaa/phoneku',
-            live_url: '#'
+            repoUrl: 'https://github.com/nandanazadaa/phoneku',
+            liveUrl: '#'
           },
           {
             id: 2,
@@ -38,8 +52,8 @@ export default async function handler(req, res) {
             description: 'Platform untuk mengelola Koperasi',
             image: 'sistem_koperasi.jpg',
             tech: ['C#'],
-            repo_url: 'https://github.com/ikhsanudin017/KoperasiApp',
-            live_url: '#'
+            repoUrl: 'https://github.com/ikhsanudin017/KoperasiApp',
+            liveUrl: '#'
           },
           {
             id: 3,
@@ -47,8 +61,8 @@ export default async function handler(req, res) {
             description: 'UI UX Aplikasi Pengelola Sewa Lapangan',
             image: 'https://i.imgur.com/TWPK4LX.jpeg',
             tech: ['Figma'],
-            repo_url: 'https://github.com/ikhsanudin017/KoperasiApp',
-            live_url: '#'
+            repoUrl: 'https://github.com/ikhsanudin017/KoperasiApp',
+            liveUrl: '#'
           }
         ];
         res.status(200).json(projects);
