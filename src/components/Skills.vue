@@ -15,11 +15,11 @@
 
     <div class="container mx-auto px-6 relative z-10">
       <SectionTitle title="Keterampilan" />
-      
+
       <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-        <div 
-          v-for="(skill, index) in skills" 
-          :key="skill.name" 
+        <div
+          v-for="(skill, index) in skills"
+          :key="skill.name"
           class="skill-card"
           :style="{ animationDelay: `${index * 50}ms` }"
         >
@@ -35,18 +35,21 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import apiClient from '../api/axios'; // <-- Impor apiClient yang baru
 import SectionTitle from './SectionTitle.vue';
 
-const projects = ref([]);
+const skills = ref([]); // ← Fix: ganti dari projects ke skills
 
 onMounted(async () => {
   try {
-    // Gunakan apiClient untuk mengambil data. Tidak perlu path lengkap lagi.
-    const response = await apiClient.get('/skills'); 
-    projects.value = response.data;
+    const response = await fetch('/api/skills');
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    skills.value = data; // ← Fix: ganti ke skills.value
+    console.log('Skills loaded:', data);
   } catch (error) {
-    console.error('Gagal mengambil data proyek:', error);
+    console.error('Gagal mengambil data skills:', error);
   }
 });
 </script>

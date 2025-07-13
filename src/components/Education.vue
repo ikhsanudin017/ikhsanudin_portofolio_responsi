@@ -15,15 +15,15 @@
 
     <div class="container mx-auto px-6 relative z-10">
       <SectionTitle title="Riwayat Pendidikan" />
-      
+
       <div class="relative wrap overflow-hidden p-10 h-full">
         <div class="absolute h-full w-1 bg-gradient-to-b from-sky-500 via-cyan-400 to-emerald-500 rounded-full" style="left: 50%; transform: translateX(-50%); box-shadow: 0 0 20px rgba(14, 165, 233, 0.6), 0 0 20px rgba(16, 185, 129, 0.6);"></div>
 
-        <div v-for="(edu, index) in educationHistory" :key="edu.id" 
+        <div v-for="(edu, index) in educationHistory" :key="edu.id"
              :class="['mb-8 flex justify-between items-center w-full', index % 2 === 0 ? 'flex-row-reverse left-timeline' : 'right-timeline']">
-          
+
           <div class="order-1 w-5/12"></div>
-          
+
           <div class="z-20 flex items-center order-1 bg-slate-800 shadow-lg w-10 h-10 rounded-full border-2 border-cyan-400" style="box-shadow: 0 0 15px rgba(14, 165, 233, 0.6);">
             <div class="mx-auto text-cyan-400">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -33,7 +33,7 @@
               </svg>
             </div>
           </div>
-          
+
           <div class="order-1 bg-slate-800/70 backdrop-blur-md border border-slate-700 rounded-lg shadow-xl w-5/12 px-6 py-4 card-timeline group">
             <p class="font-semibold text-cyan-400 text-sm uppercase tracking-wider">{{ edu.period }}</p>
             <h3 class="font-bold text-slate-100 text-xl mt-1 uppercase group-hover:text-emerald-400 transition-colors duration-300">{{ edu.institution }}</h3>
@@ -44,21 +44,23 @@
     </div>
   </section>
 </template>
-
 <script setup>
 import { ref, onMounted } from 'vue';
-import apiClient from '../api/axios'; // <-- Impor apiClient yang baru
 import SectionTitle from './SectionTitle.vue';
 
-const projects = ref([]);
+const educationHistory = ref([]); // ← Fix: ganti dari projects ke educationHistory
 
 onMounted(async () => {
   try {
-    // Gunakan apiClient untuk mengambil data. Tidak perlu path lengkap lagi.
-    const response = await apiClient.get('/education'); 
-    projects.value = response.data;
+    const response = await fetch('/api/education');
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    educationHistory.value = data; // ← Fix: ganti ke educationHistory.value
+    console.log('Education loaded:', data);
   } catch (error) {
-    console.error('Gagal mengambil data proyek:', error);
+    console.error('Gagal mengambil data education:', error);
   }
 });
 </script>

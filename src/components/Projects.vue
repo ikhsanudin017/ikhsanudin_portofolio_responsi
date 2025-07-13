@@ -23,11 +23,11 @@
           Beberapa karya yang telah saya bangun.
         </p>
       </div>
-      
+
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div 
-          v-for="(project, index) in projects" 
-          :key="project.id" 
+        <div
+          v-for="(project, index) in projects"
+          :key="project.id"
           class="project-card group"
           :style="{ animationDelay: `${index * 150}ms` }"
         >
@@ -39,17 +39,17 @@
               </div>
               <div class="glitch-overlay"></div>
             </div>
-            
+
             <div class="card-content">
               <h3 class="project-title">{{ project.title }}</h3>
               <p class="project-description">{{ project.description }}</p>
-              
+
               <div class="tech-stack">
                 <span v-for="tech in project.tech" :key="tech" class="tech-chip">
                   {{ tech }}
                 </span>
               </div>
-              
+
               <div class="action-links">
                 <a :href="project.repoUrl" target="_blank" rel="noopener noreferrer" class="action-btn github-btn" aria-label="GitHub Repository">
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -73,25 +73,25 @@
     </div>
   </section>
 </template>
-
 <script setup>
-
 import { ref, onMounted } from 'vue';
-import apiClient from '../api/axios'; // <-- Impor apiClient yang baru
 import SectionTitle from './SectionTitle.vue';
 
-const projects = ref([]);
+const projects = ref([]); // ← Ini sudah benar
 
 onMounted(async () => {
   try {
-    // Gunakan apiClient untuk mengambil data. Tidak perlu path lengkap lagi.
-    const response = await apiClient.get('/projects'); 
-    projects.value = response.data;
+    const response = await fetch('/api/projects');
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    projects.value = data;
+    console.log('Projects loaded:', data);
   } catch (error) {
-    console.error('Gagal mengambil data proyek:', error);
+    console.error('Gagal mengambil data projects:', error);
   }
 });
-
 </script>
 
 <style scoped>
@@ -228,7 +228,7 @@ onMounted(async () => {
 }
 .glitch-overlay {
   position: absolute; inset: 0;
-  background: 
+  background:
     linear-gradient(0deg, transparent 98%, rgba(14, 165, 233, 0.1) 100%),
     linear-gradient(0deg, transparent 96%, rgba(16, 185, 129, 0.1) 100%);
   opacity: 0; transition: opacity 0.3s ease;

@@ -1,23 +1,11 @@
 {
-  "name": "backend",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js",
-    "dev": "nodemon index.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
-    "@vercel/postgres": "^0.10.0",
-    "@neondatabase/serverless": "^0.6.0",
-    "cors": "^2.8.5",
-    "dotenv": "^17.2.0",
-    "express": "^5.1.0"
+    "@vercel/postgres": "^0.5.0",
+    "vue": "^3.0.0"
   },
-  "devDependencies": {
-    "nodemon": "^3.1.10"
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   }
 }
