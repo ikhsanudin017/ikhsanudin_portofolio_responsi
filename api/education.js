@@ -1,7 +1,5 @@
-// Import hanya jika di production
 let sql;
 if (process.env.VERCEL) {
-  // Hanya import @vercel/postgres jika di Vercel
   const { sql: vercelSql } = await import('@vercel/postgres');
   sql = vercelSql;
 }
@@ -18,13 +16,18 @@ export default async function handler(req, res) {
 
   if (req.method === 'GET') {
     try {
-      // Cek jika di Vercel (production) atau local (development)
       if (process.env.VERCEL && sql) {
-        // Production - pakai database
-        const { rows } = await sql`SELECT * FROM education ORDER BY id ASC;`;
+        // Get unique education entries
+        const { rows } = await sql`
+          SELECT DISTINCT ON (institution, major) id, period, institution, major
+          FROM education
+          WHERE institution IS NOT NULL
+          ORDER BY institution, major, id
+          LIMIT 10;
+        `;
         res.status(200).json(rows);
       } else {
-        // Development - pakai data static
+        // Development - static data
         const educationData = [
           {
             id: 1,
@@ -42,7 +45,7 @@ export default async function handler(req, res) {
         res.status(200).json(educationData);
       }
     } catch (error) {
-      console.error('Database error:', error);
+      console.error('Error:', error);
       res.status(500).json({
         error: 'Gagal mengambil data pendidikan',
         details: error.message
