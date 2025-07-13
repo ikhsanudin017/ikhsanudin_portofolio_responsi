@@ -86,8 +86,13 @@ onMounted(async () => {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
+
+    // Debug: lihat struktur data
+    console.log('Raw projects data:', data);
+    console.log('First item:', data[0]);
+    console.log('Keys of first item:', Object.keys(data[0] || {}));
+
     projects.value = data;
-    console.log('Projects loaded:', data);
   } catch (error) {
     console.error('Gagal mengambil data projects:', error);
   }

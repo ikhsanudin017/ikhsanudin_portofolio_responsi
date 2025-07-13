@@ -57,8 +57,13 @@ onMounted(async () => {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
-    educationHistory.value = data; // ← Fix: ganti ke educationHistory.value
-    console.log('Education loaded:', data);
+
+    // Debug: lihat struktur data
+    console.log('Raw education data:', data);
+    console.log('First item:', data[0]);
+    console.log('Keys of first item:', Object.keys(data[0] || {}));
+
+    educationHistory.value = data;
   } catch (error) {
     console.error('Gagal mengambil data education:', error);
   }

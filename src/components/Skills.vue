@@ -46,8 +46,13 @@ onMounted(async () => {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const data = await response.json();
-    skills.value = data; // ← Fix: ganti ke skills.value
-    console.log('Skills loaded:', data);
+
+    // Debug: lihat struktur data
+    console.log('Raw skills data:', data);
+    console.log('First item:', data[0]);
+    console.log('Keys of first item:', Object.keys(data[0] || {}));
+
+    skills.value = data;
   } catch (error) {
     console.error('Gagal mengambil data skills:', error);
   }
