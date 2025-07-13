@@ -47,10 +47,10 @@ onMounted(async () => {
     }
     const data = await response.json();
 
-    // Debug: lihat struktur data
-    console.log('Raw skills data:', data);
-    console.log('First item:', data[0]);
-    console.log('Keys of first item:', Object.keys(data[0] || {}));
+    // Debug detail
+    console.log('Skills - First 3 items:', data.slice(0, 3));
+    console.log('Skills - Field names:', Object.keys(data[0] || {}));
+    console.log('Skills - First item values:', Object.values(data[0] || {}));
 
     skills.value = data;
   } catch (error) {

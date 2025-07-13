@@ -58,10 +58,10 @@ onMounted(async () => {
     }
     const data = await response.json();
 
-    // Debug: lihat struktur data
-    console.log('Raw education data:', data);
-    console.log('First item:', data[0]);
-    console.log('Keys of first item:', Object.keys(data[0] || {}));
+    // Debug detail
+    console.log('Education - First 3 items:', data.slice(0, 3));
+    console.log('Education - Field names:', Object.keys(data[0] || {}));
+    console.log('Education - First item values:', Object.values(data[0] || {}));
 
     educationHistory.value = data;
   } catch (error) {
