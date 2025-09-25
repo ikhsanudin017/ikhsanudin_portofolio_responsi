@@ -1,25 +1,29 @@
 {
-  "name": "portofolio_ikhsanudin",
+  "name": "portfolio-project",
   "version": "1.0.0",
-  "main": "index.js",
+  "private": true,
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
   "dependencies": {
-    "@vercel/postgres": "^0.10.0",
+    "axios": "^1.7.2",
     "cors": "^2.8.5",
-    "dotenv": "^17.2.0",
-    "express": "^5.1.0"
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "@vercel/postgres": "^0.9.0",
+    "vue": "^3.4.29",
+    "vue-router": "^4.3.3",
+    "vite": "^5.3.1",
+    "vite-plugin-vue-devtools": "^7.3.6"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.21",
-    "nodemon": "^3.1.10",
-    "postcss": "^8.5.6",
-    "tailwindcss": "^3.4.17",
-    "vite": "^7.0.4"
+    "@vitejs/plugin-vue": "^5.0.5",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.4",
+    "nodemon": "^3.1.4"
   }
 }
