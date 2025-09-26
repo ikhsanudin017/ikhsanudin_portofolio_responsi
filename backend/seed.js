@@ -11,7 +11,12 @@ try {
 }
 
 const { sql } = require('@vercel/postgres');
-const { educationHistory, skills, projects } = require('./data.js');
+const {
+  educationHistory,
+  skills: skillSeed,
+  projects: projectSeed,
+  certificates: certificateSeed
+} = require('./data.js');
 
 async function seed() {
   try {
@@ -38,6 +43,18 @@ async function seed() {
       live_url TEXT
     );`;
 
+    await sql`CREATE TABLE IF NOT EXISTS certificates (
+      id SERIAL PRIMARY KEY,
+      title VARCHAR(255) UNIQUE NOT NULL,
+      issuer VARCHAR(255) NOT NULL,
+      date VARCHAR(255) NOT NULL,
+      description TEXT,
+      pdf_url TEXT,
+      image_url TEXT,
+      credential_url TEXT,
+      skills JSONB DEFAULT '[]'::jsonb
+    );`;
+
     await sql`ALTER TABLE skills ADD COLUMN IF NOT EXISTS icon TEXT;`;
     await sql`ALTER TABLE skills DROP COLUMN IF EXISTS level;`;
 
@@ -49,6 +66,7 @@ async function seed() {
     await sql`TRUNCATE TABLE education RESTART IDENTITY CASCADE;`;
     await sql`TRUNCATE TABLE skills RESTART IDENTITY CASCADE;`;
     await sql`TRUNCATE TABLE projects RESTART IDENTITY CASCADE;`;
+    await sql`TRUNCATE TABLE certificates RESTART IDENTITY CASCADE;`;
 
     for (const item of educationHistory) {
       await sql`
@@ -57,14 +75,14 @@ async function seed() {
       `;
     }
 
-    for (const skill of skills) {
+    for (const skill of skillSeed) {
       await sql`
         INSERT INTO skills (name, icon)
         VALUES (${skill.name}, ${skill.icon});
       `;
     }
 
-    for (const project of projects) {
+    for (const project of projectSeed) {
       const techJson = JSON.stringify(project.tech || []);
       await sql`
         INSERT INTO projects (title, description, image, tech, repo_url, live_url)
@@ -75,6 +93,23 @@ async function seed() {
           ${techJson}::jsonb,
           ${project.repoUrl},
           ${project.liveUrl}
+        );
+      `;
+    }
+
+    for (const certificate of certificateSeed) {
+      const skillJson = JSON.stringify(certificate.skills || []);
+      await sql`
+        INSERT INTO certificates (title, issuer, date, description, pdf_url, image_url, credential_url, skills)
+        VALUES (
+          ${certificate.title},
+          ${certificate.issuer},
+          ${certificate.date},
+          ${certificate.description},
+          ${certificate.pdf_url},
+          ${certificate.image_url},
+          ${certificate.credential_url},
+          ${skillJson}::jsonb
         );
       `;
     }

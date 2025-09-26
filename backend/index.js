@@ -16,7 +16,8 @@ try {
 const {
   educationHistory: fallbackEducation,
   skills: fallbackSkills,
-  projects: fallbackProjects
+  projects: fallbackProjects,
+  certificates: fallbackCertificates
 } = require('./data.js');
 
 const app = express();
@@ -84,6 +85,30 @@ app.get('/api/projects', async (req, res) => {
   } catch (error) {
     console.error('Error fetching projects data:', error);
     res.status(200).json(fallbackProjects);
+  }
+});
+
+app.get('/api/certificates', async (req, res) => {
+  try {
+    const { rows } = await sql`
+      SELECT id, title, issuer, date, description, pdf_url, image_url, credential_url, skills
+      FROM certificates
+      ORDER BY id ASC;
+    `;
+
+    const formatted = rows.map((row) => ({
+      ...row,
+      skills: Array.isArray(row.skills)
+        ? row.skills
+        : row.skills
+        ? row.skills
+        : []
+    }));
+
+    res.status(200).json(formatted);
+  } catch (error) {
+    console.error('Error fetching certificates data:', error);
+    res.status(200).json(fallbackCertificates);
   }
 });
 

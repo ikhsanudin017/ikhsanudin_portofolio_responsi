@@ -118,5 +118,97 @@ const projects = [
   },
 ];
 
+// Data fallback untuk sertifikat & pencapaian
+const certificates = [
+  {
+    id: 1,
+    title: 'Juara 1 Lomba Poster Rancang Bangun IoT',
+    issuer: 'Jakarta Global University',
+    date: '05 Juli 2025',
+    description: 'Sertifikat penghargaan Juara 1 Lomba Nasional Poster Rancang Bangun IoT dalam rangkaian acara IT\'s Day 2025. Selamat Anda menjadi bagian dari 3 Besar Lomba Nasional.',
+    pdf_url: '#',
+    image_url: '/images/certificate-lombaposter.jpg',
+    credential_url: '#',
+    skills: ['IoT Design', 'Poster Design', 'Innovation', 'National Competition']
+  },
+  {
+    id: 2,
+    title: 'Belajar Dasar Cloud dan Gen AI di AWS',
+    issuer: 'Dicoding Indonesia',
+    date: '04 Juni 2025',
+    description: 'Sertifikat kelulusan kelas "Belajar Dasar Cloud dan Gen AI di AWS" dari Dicoding Academy dengan rating bintang 9. Berlaku hingga 04 Juni 2028.',
+    pdf_url: '#',
+    image_url: '/images/certificate-aws.png',
+    credential_url: 'https://dicoding.com/certificates/JMZV61N3PN9',
+    skills: ['AWS Cloud', 'Generative AI', 'Cloud Computing']
+  },
+  {
+    id: 3,
+    title: 'Belajar Membuat Aplikasi Flutter untuk Pemula',
+    issuer: 'Dicoding Indonesia',
+    date: '16 Oktober 2024',
+    description: 'Sertifikat kelulusan kelas "Belajar Membuat Aplikasi Flutter untuk Pemula" dari Dicoding Academy dengan rating bintang 9. Berlaku hingga 16 Oktober 2027.',
+    pdf_url: '#',
+    image_url: '/images/certificate-flutter.png',
+    credential_url: 'https://dicoding.com/certificates/N9ZOYOOVYPG5',
+    skills: ['Flutter Development', 'Mobile Apps', 'Cross Platform']
+  },
+  {
+    id: 4,
+    title: 'Memulai Pemrograman dengan Dart',
+    issuer: 'Dicoding Indonesia',
+    date: '05 Oktober 2024',
+    description: 'Sertifikat kelulusan kelas "Memulai Pemrograman dengan Dart" dari Dicoding Academy dengan rating bintang 9. Berlaku hingga 05 Oktober 2027.',
+    pdf_url: '#',
+    image_url: '/images/certificate-dart.png',
+    credential_url: 'https://dicoding.com/certificates/QLZ9V2YJ7X5D',
+    skills: ['Dart Programming', 'Mobile Development', 'Flutter']
+  },
+  {
+    id: 5,
+    title: 'Pelatihan Member AMCC 2023/2024',
+    issuer: 'AMIKOM Computer Club (AMCC)',
+    date: '26 Agustus 2024',
+    description: 'Sertifikat peserta Divisi Mobile Programming pada Pelatihan Member AMCC 2023/2024 yang diselenggarakan di Universitas Amikom Yogyakarta.',
+    pdf_url: '#',
+    image_url: '/images/certificate-ags.png',
+    credential_url: '#',
+    skills: ['Mobile Programming', 'Community Learning']
+  },
+  {
+    id: 6,
+    title: 'Competition of Developer (CODE) 2024',
+    issuer: 'AMIKOM Computer Club (AMCC)',
+    date: '09 September 2024',
+    description: 'Sertifikat panitia acara CODE (Competition of Developer) 2024 yang diselenggarakan di Ruang Citra 2 AMIKOM.',
+    pdf_url: '#',
+    image_url: '/images/certificate-code.png',
+    credential_url: '#',
+    skills: ['Programming Competition', 'Event Management']
+  },
+  {
+    id: 7,
+    title: 'AMCC Goes To School (AGS) 2024',
+    issuer: 'AMIKOM Computer Club (AMCC)',
+    date: '20 Mei 2024',
+    description: 'Sertifikat panitia AGS 2024 yang diselenggarakan di SMA Negeri 10 Yogyakarta pada 19 Februari 2024.',
+    pdf_url: '#',
+    image_url: '/images/certificate-ags.png',
+    credential_url: '#',
+    skills: ['Event Organization', 'Community Service']
+  },
+  {
+    id: 8,
+    title: 'Introduction to Computer (ITC) 2023',
+    issuer: 'Universitas AMIKOM Yogyakarta',
+    date: '12 Desember 2023',
+    description: 'Sertifikat peserta Divisi Computer Graphics pada acara Introduction to Computer (ITC) 2023 di Universitas Amikom Yogyakarta.',
+    pdf_url: '#',
+    image_url: '/images/certificate-itc.png',
+    credential_url: '#',
+    skills: ['Computer Graphics', 'IT Fundamentals']
+  }
+];
+
 // Ekspor semua data agar bisa di-import oleh index.js
-module.exports = { educationHistory, skills, projects };
+module.exports = { educationHistory, skills, projects, certificates };
