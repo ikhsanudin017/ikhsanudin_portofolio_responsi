@@ -299,9 +299,16 @@ onMounted(async () => {
 
 .image-container {
   position: relative;
-  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 220px;
+  padding: 12px;
   overflow: hidden;
   border-bottom: 1px solid rgba(14, 165, 233, 0.2);
+  background: radial-gradient(circle at 20% 20%, rgba(14, 165, 233, 0.08), transparent 65%),
+              radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.08), transparent 65%),
+              rgba(15, 23, 42, 0.75);
 }
 
 .certificate-preview {
@@ -310,15 +317,19 @@ onMounted(async () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, rgba(14, 165, 233, 0.05), rgba(16, 185, 129, 0.05));
+  padding: 6px;
 }
 
 .certificate-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(8, 47, 73, 0.45);
   transition: transform 0.6s ease;
-  filter: saturate(1.1);
+  filter: saturate(1.05) contrast(1.05);
 }
 
 .pdf-preview {
