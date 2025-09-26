@@ -22,6 +22,12 @@ export default defineConfig({
         changeOrigin: true,
         secure: true,
         rewrite: (path) => path.replace(/^\/api/, '/api')
+      },
+      '/images': {
+        target: 'https://ikhsanudin-portofolio-responsi.vercel.app',
+        changeOrigin: true,
+        secure: true,
+        rewrite: (path) => path.replace(/^\/images/, '/images')
       }
     }
   }
