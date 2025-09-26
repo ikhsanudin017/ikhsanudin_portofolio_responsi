@@ -1,6 +1,23 @@
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const { sql } = require('@vercel/postgres');
+
+// Load environment variables for local development without failing on Vercel
+try {
+  const envPath = path.resolve(__dirname, '..', '.env.development.local');
+  require('dotenv').config({ path: envPath });
+  require('dotenv').config();
+} catch (error) {
+  console.warn('Dotenv not loaded (this is expected in production):', error.message);
+}
+
+// Static fallback data when the database cannot be reached
+const {
+  educationHistory: fallbackEducation,
+  skills: fallbackSkills,
+  projects: fallbackProjects
+} = require('./data.js');
 
 const app = express();
 
@@ -16,31 +33,56 @@ app.get('/', (req, res) => {
 // Endpoint API yang akan mengambil data dari Database
 app.get('/api/education', async (req, res) => {
   try {
-    const { rows } = await sql`SELECT * FROM education ORDER BY period DESC;`;
+    const { rows } = await sql`
+      SELECT period, institution, major
+      FROM education
+      ORDER BY id ASC;
+    `;
     res.status(200).json(rows);
   } catch (error) {
     console.error('Error fetching education data:', error);
-    res.status(500).json({ error: 'Gagal mengambil data pendidikan' });
+    res.status(200).json(fallbackEducation);
   }
 });
 
 app.get('/api/skills', async (req, res) => {
   try {
-    const { rows } = await sql`SELECT * FROM skills;`;
-    res.status(200).json(rows);
+    const { rows } = await sql`
+      SELECT name, icon
+      FROM skills
+      ORDER BY id ASC;
+    `;
+    // Pastikan icon tersedia agar tampilan konsisten
+    const formatted = rows.map((row) => ({
+      name: row.name,
+      icon: row.icon
+    }));
+    res.status(200).json(formatted);
   } catch (error) {
     console.error('Error fetching skills data:', error);
-    res.status(500).json({ error: 'Gagal mengambil data skill' });
+    res.status(200).json(fallbackSkills);
   }
 });
 
 app.get('/api/projects', async (req, res) => {
   try {
-    const { rows } = await sql`SELECT * FROM projects;`;
-    res.status(200).json(rows);
+    const { rows } = await sql`
+      SELECT id, title, description, image, tech, repo_url, live_url
+      FROM projects
+      ORDER BY id ASC;
+    `;
+
+    const formatted = rows.map(({ repo_url, live_url, tech, ...rest }) => ({
+      ...rest,
+      tech: Array.isArray(tech) ? tech : [],
+      repoUrl: repo_url,
+      liveUrl: live_url
+    }));
+
+    res.status(200).json(formatted);
   } catch (error) {
     console.error('Error fetching projects data:', error);
-    res.status(500).json({ error: 'Gagal mengambil data proyek' });
+    res.status(200).json(fallbackProjects);
   }
 });
 
