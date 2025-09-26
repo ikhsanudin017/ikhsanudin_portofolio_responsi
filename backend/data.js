@@ -67,7 +67,7 @@ const projects = [
     id: 1, 
     title: 'PhoneKu', 
     description: 'Platform toko online untuk menjual produk HP dengan fitur pencarian, keranjang belanja, dan checkout.', 
-    image: 'phoneku.jpg', 
+    image: '/images/phoneku.jpg', 
     tech: ['laravel'], 
     repoUrl: 'https://github.com/nandanazadaa/phoneku', 
     liveUrl: '#' 
@@ -76,7 +76,7 @@ const projects = [
     id: 2, 
     title: 'Sistem Koperasi', 
     description: 'Platform untuk mengelola Koperasi', 
-    image: 'sistem_koperasi.jpg', 
+    image: '/images/sistem_koperasi.jpg', 
     tech: ['C#'], 
     repoUrl: 'https://github.com/ikhsanudin017/KoperasiApp', 
     liveUrl: '#' 
@@ -93,7 +93,7 @@ const projects = [
     id: 4,
     title: 'Web & App Laporan Activity',
     description: 'Dashboard lintas platform untuk memantau aktivitas tim, KPI, dan progres operasional secara real time.',
-    image: 'web-app-laporan-activity.svg',
+    image: '/images/web-app-laporan-activity.png',
     tech: ['Laravel', 'Vue.js', 'PostgreSQL'],
     repoUrl: '#',
     liveUrl: '#'
@@ -102,7 +102,7 @@ const projects = [
     id: 5,
     title: 'Web Presensi RTQ',
     description: 'Sistem presensi digital santri dengan dukungan QR code, rekap otomatis, dan panel monitoring pengajar.',
-    image: 'web-presensi-rtq.svg',
+    image: '/images/web-presensi-rtq.png',
     tech: ['Laravel', 'Tailwind', 'MySQL'],
     repoUrl: '#',
     liveUrl: '#'
@@ -111,7 +111,7 @@ const projects = [
     id: 6,
     title: 'Web Survey Kelayakan Anggota',
     description: 'Aplikasi penilaian kelayakan anggota koperasi dengan otomatisasi skor dan visualisasi hasil survey.',
-    image: 'web-survey-kelayakan-anggota.svg',
+    image: '/images/web-survey-kelayakan-anggota.png',
     tech: ['Laravel', 'Bootstrap', 'PostgreSQL'],
     repoUrl: '#',
     liveUrl: '#'

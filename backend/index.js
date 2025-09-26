@@ -24,6 +24,7 @@ const app = express();
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use('/images', express.static(path.join(__dirname, 'image')));
 
 // Health check endpoint
 app.get('/', (req, res) => {
