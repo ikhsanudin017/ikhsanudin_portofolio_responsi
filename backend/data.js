@@ -88,8 +88,34 @@ const projects = [
   tech: ['C#'], 
   repoUrl: 'https://github.com/ikhsanudin017/KoperasiApp', 
   liveUrl: '#' 
-},
-
+  },
+  { 
+    id: 4,
+    title: 'Web & App Laporan Activity',
+    description: 'Dashboard lintas platform untuk memantau aktivitas tim, KPI, dan progres operasional secara real time.',
+    image: 'web-app-laporan-activity.svg',
+    tech: ['Laravel', 'Vue.js', 'PostgreSQL'],
+    repoUrl: '#',
+    liveUrl: '#'
+  },
+  {
+    id: 5,
+    title: 'Web Presensi RTQ',
+    description: 'Sistem presensi digital santri dengan dukungan QR code, rekap otomatis, dan panel monitoring pengajar.',
+    image: 'web-presensi-rtq.svg',
+    tech: ['Laravel', 'Tailwind', 'MySQL'],
+    repoUrl: '#',
+    liveUrl: '#'
+  },
+  {
+    id: 6,
+    title: 'Web Survey Kelayakan Anggota',
+    description: 'Aplikasi penilaian kelayakan anggota koperasi dengan otomatisasi skor dan visualisasi hasil survey.',
+    image: 'web-survey-kelayakan-anggota.svg',
+    tech: ['Laravel', 'Bootstrap', 'PostgreSQL'],
+    repoUrl: '#',
+    liveUrl: '#'
+  },
 ];
 
 // Ekspor semua data agar bisa di-import oleh index.js
