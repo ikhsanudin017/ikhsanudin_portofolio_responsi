@@ -1,20 +1,7 @@
 <template>
   <section id="projects" class="relative bg-transparent py-24 font-tech overflow-hidden">
-    <div class="absolute inset-0 z-0">
-      <div class="particle-sea">
-        <div class="particle" v-for="n in 100" :key="`p-${n}`" :style="{
-          '--x': `${Math.random() * 100}vw`,
-          '--y': `${Math.random() * 100}vh`,
-          '--d': `${Math.random() * 8 + 5}s`,
-          '--s': `${Math.random() * 2 + 1}px`
-        }"></div>
-      </div>
-      <div class="sonar-grid"></div>
-      <div class="energy-currents"></div>
-    </div>
-
     <div class="container mx-auto px-6 relative z-10">
-      <div class="text-center mb-16">
+      <div v-reveal class="section-heading text-center mb-16">
         <h2 class="text-5xl font-bold text-slate-100 mb-4 animate-pulse-slow" style="text-shadow: 0 0 15px rgba(34, 211, 238, 0.4);">
           PROYEK UNGGULAN
         </h2>
@@ -27,6 +14,7 @@
       <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         <div
           v-for="(project, index) in projects"
+          v-reveal="index"
           :key="project.id"
           class="project-card group"
           :style="{ animationDelay: `${index * 150}ms` }"
@@ -101,59 +89,7 @@ onMounted(async () => {
   background-image: radial-gradient(ellipse at 50% 50%, rgba(14, 165, 233, 0.15) 0%, transparent 70%);
 }
 
-.particle-sea {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-.particle {
-  position: absolute;
-  top: var(--y);
-  left: var(--x);
-  width: var(--s);
-  height: var(--s);
-  background-color: #0ea5e9;
-  border-radius: 50%;
-  box-shadow: 0 0 8px #0ea5e9, 0 0 16px #0ea5e9;
-  animation: drift var(--d) ease-in-out infinite alternate;
-}
-@keyframes drift {
-  to {
-    transform: translate(calc(var(--x) / 15), calc(var(--y) / 15));
-    opacity: 0.2;
-  }
-}
 
-.sonar-grid {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 1px;
-  height: 1px;
-  background-color: transparent;
-  border-radius: 50%;
-  box-shadow: 0 0 100px 50px rgba(14, 165, 233, 0.1);
-  animation: sonar-pulse 4s linear infinite;
-  pointer-events: none;
-}
-@keyframes sonar-pulse {
-  0% { transform: scale(0); opacity: 0.8; }
-  100% { transform: scale(20); opacity: 0; }
-}
-
-.energy-currents {
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 800'%3E%3Cpath d='M0 400 Q 200 350 400 400 T 800 400' stroke='%230ea5e9' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3Cpath d='M0 450 Q 200 500 400 450 T 800 450' stroke='%2310b981' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-  background-size: 800px 800px;
-  opacity: 0.05;
-  animation: wave-flow 15s linear infinite;
-  pointer-events: none;
-}
-@keyframes wave-flow {
-  from { background-position-x: 0px; }
-  to { background-position-x: -800px; }
-}
 
 /* Project Card Styling (Tidak ada perubahan signifikan, hanya animasi masuk) */
 .project-card {

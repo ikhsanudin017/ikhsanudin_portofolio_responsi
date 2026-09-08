@@ -1,5 +1,5 @@
 <template>
-  <div class="text-center mb-16">
+  <div v-reveal class="section-heading text-center mb-16">
     <h2 
       class="text-4xl md:text-5xl font-bold text-slate-100 mb-4 animate-pulse-slow" 
       style="text-shadow: 0 0 15px rgba(34, 211, 238, 0.4);"

@@ -15,3 +15,17 @@
 body {
   background-color: #0A192F; /* Ini adalah warna slate-900 */
 }
+
+html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+body { color: #e2e8f0; }
+::selection { background: #22d3ee40; color: #fff; }
+:focus-visible { outline: 2px solid #67e8f9; outline-offset: 6px; }
+.motion-paused *, .motion-paused *::before, .motion-paused *::after {
+  animation-play-state: paused !important;
+}
+/* Entry content remains readable even when motion is paused during the introduction. */
+.motion-paused .hero-enter { animation: none !important; opacity: 1 !important; transform: none !important; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}

@@ -1,43 +1,46 @@
 <template>
   <header
     :class="[
-      'sticky top-0 z-50 transition-all duration-300 font-tech',
+      'site-header sticky top-0 z-50 transition-all duration-300 font-tech',
       isScrolled ? 'bg-slate-900/80 backdrop-blur-lg border-b border-cyan-400/20' : 'bg-transparent'
     ]"
   >
-    <nav class="container mx-auto px-6 h-20 flex justify-between items-center">
+    <nav class="container mx-auto px-6 h-20 flex justify-between items-center gap-4">
       <div class="text-2xl font-bold">
         <a href="#" class="tech-logo">IKHSANUDIN</a>
       </div>
 
-      <div class="hidden md:flex items-center gap-8">
+      <div class="hidden lg:flex items-center gap-4 xl:gap-8">
         <a v-for="link in navLinks" :key="link.href" :href="link.href" class="nav-link">
           <span>{{ link.text }}</span>
         </a>
       </div>
 
-      <div class="hidden md:flex items-center gap-4">
-        <div class="holographic-border-nav">
-          <a href="#contact" class="cta-button-nav">
-            <span class="relative z-10">Hubungi Saya</span>
-          </a>
+      <div class="nav-controls flex items-center gap-3 relative z-50">
+        <ThemeSwitch />
+        <div class="hidden xl:flex items-center gap-4">
+          <div class="holographic-border-nav">
+            <a href="#contact" class="cta-button-nav">
+              <span class="relative z-10">Hubungi Saya</span>
+            </a>
+          </div>
         </div>
-      </div>
 
-      <div class="md:hidden">
-        <button @click="isMobileMenuOpen = !isMobileMenuOpen" class="text-cyan-400 z-50 relative p-2">
-          <svg v-if="!isMobileMenuOpen" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-          <svg v-else class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-          </svg>
-        </button>
+        <div class="lg:hidden">
+          <button :aria-expanded="isMobileMenuOpen" aria-controls="mobile-navigation" :aria-label="isMobileMenuOpen ? 'Tutup menu navigasi' : 'Buka menu navigasi'" @click="isMobileMenuOpen = !isMobileMenuOpen" class="text-cyan-400 z-50 relative p-2">
+            <svg v-if="!isMobileMenuOpen" class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+            <svg v-else class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
       </div>
     </nav>
 
     <transition name="mobile-menu-fade">
-      <div v-if="isMobileMenuOpen" class="md:hidden bg-slate-900/95 backdrop-blur-lg absolute top-0 left-0 w-full h-screen">
+      <div id="mobile-navigation" v-if="isMobileMenuOpen" class="lg:hidden bg-slate-900/95 backdrop-blur-lg absolute top-0 left-0 w-full h-screen">
         <ul class="flex flex-col items-center justify-center h-full space-y-8">
           <li v-for="link in navLinks" :key="link.href">
             <a :href="link.href" @click="closeMobileMenu" class="mobile-nav-link">{{ link.text }}</a>
@@ -57,6 +60,7 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted, watch } from 'vue';
+import ThemeSwitch from './ThemeSwitch.vue';
 
 const isScrolled = ref(false);
 const isMobileMenuOpen = ref(false);
