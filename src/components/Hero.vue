@@ -20,7 +20,7 @@
             Jelajahi karya
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
           </a>
-          <a href="https://drive.google.com/uc?export=download&id=1Vu441KQsPlOIBhn-tgeNZN-5H74JL4FV" download="Ikhsanudin-CV.pdf" class="hero-button hero-button--secondary">
+          <a href="/portofolio_ikhsanudin.pdf" download="portofolio_ikhsanudin.pdf" class="hero-button hero-button--secondary">
             Download CV
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M12 3v12m-5-5 5 5 5-5M5 16v5h14v-5" /></svg>
           </a>
