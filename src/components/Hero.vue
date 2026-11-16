@@ -210,10 +210,13 @@ onUnmounted(() => cancelAnimationFrame(frame))
 @media (max-width: 1023px) {
   .hero-layout { padding: 65px 30px 55px; gap: 0; }
   .hero-name { font-size: clamp(44px, 6.3vw, 70px); }
-  .floating-label { padding: 10px; gap: 8px; }
-  .floating-label--code { right: -2%; top: 18%; }
-  .floating-label strong { font-size: 10px; }
-  .floating-label small { font-size: 6px; }
+  .floating-label { padding: 6px 8px; gap: 6px; }
+  .floating-label--code { right: -2%; top: 18%; transform: rotate(5deg) scale(.75); transform-origin: top right; }
+  .floating-label--design { transform: scale(.75); transform-origin: bottom left; }
+  .label-icon { width: 24px; height: 24px; font-size: 11px; }
+  .label-icon--green { font-size: 19px; }
+  .floating-label strong { font-size: 9px; white-space: nowrap; }
+  .floating-label small { font-size: 5px; margin-bottom: 2px; }
   .hero-bottom { margin-inline: 30px; }
 }
 @media (max-width: 767px) {
@@ -231,6 +234,9 @@ onUnmounted(() => cancelAnimationFrame(frame))
   .hero-contact { font-size: 10px; margin-top: 20px; }
   .orbital-scene { max-width: 400px; }
   .hero-visual { padding: 0 4px; }
+  .floating-label { animation-duration: 7s; }
+  .floating-label--code { transform: rotate(5deg) scale(.7); }
+  .floating-label--design { transform: scale(.7); }
   .portrait-window { border-width: 3px; }
   .portrait-caption span:first-child { font-size: 18px; }
   .portrait-caption span:last-child { font-size: 8px; }
@@ -243,9 +249,10 @@ onUnmounted(() => cancelAnimationFrame(frame))
 @media (max-width: 359px) {
   .hero-layout { padding-inline: 18px; }
   .hero-subtitle { font-size: 12px; }
-  .floating-label { padding: 8px; gap: 6px; }
-  .label-icon { width: 24px; height: 24px; }
-  .floating-label strong { font-size: 9px; }
+  .floating-label { padding: 5px 6px; gap: 5px; }
+  .label-icon { width: 20px; height: 20px; font-size: 10px; }
+  .label-icon--green { font-size: 16px; }
+  .floating-label strong { font-size: 8px; }
   .portrait-caption { bottom: 10%; gap: 2px; }
   .portrait-caption span:first-child { font-size: 18px; }
 }
